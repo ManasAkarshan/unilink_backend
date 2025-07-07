@@ -25,6 +25,9 @@ import databaseConfig from './config/database.config';
         synchronize:configService.get('database.synchronize'),
         ssl:{
           rejectUnauthorized:false
+        },  
+        extra: {
+          family: 4 // 👈 Force IPv4 connections
         }
       }))
     }),
