@@ -33,7 +33,7 @@ import databaseConfig from './config/database.config';
           autoLoadEntities: dbConfig.autoLoadEntities,
           synchronize: dbConfig.synchronize,  
           ssl: {
-            rejectUnauthorized:true
+            rejectUnauthorized:false
           }
         };
       })
