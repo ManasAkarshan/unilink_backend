@@ -23,13 +23,15 @@ import databaseConfig from './config/database.config';
         const dbConfig = configService.get('database');
         return {
           type: 'postgres',
-          host: dbConfig.host,
-          port: dbConfig.port,
-          username: dbConfig.username,
-          password: dbConfig.password,
-          database: dbConfig.database,
-          autoLoadEntities: true,
-          synchronize: true,
+          // host: dbConfig.host,
+          // port: dbConfig.port,
+          // username: dbConfig.username,
+          // password: dbConfig.password,
+          // database: dbConfig.database,
+
+          url:dbConfig.url,
+          autoLoadEntities: dbConfig.autoLoadEntities,
+          synchronize: dbConfig.synchronize,
           ssl: dbConfig.ssl,
         };
       })

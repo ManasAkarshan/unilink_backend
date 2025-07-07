@@ -11,6 +11,8 @@ export default registerAs('database', () => ({
   autoLoadEntities: process.env.AUTO_LOAD === 'true',
   synchronize: process.env.DB_SYNC === 'true',
 
+  url:process.env.DB_URL,
+
   // SSL for production environments like Render
   ssl: process.env.DB_SSL === 'true'
     ? { rejectUnauthorized: process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false' }
