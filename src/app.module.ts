@@ -13,23 +13,26 @@ import databaseConfig from './config/database.config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development',
       load:[databaseConfig]
     }),
     TypeOrmModule.forRootAsync({
       imports:[ConfigModule],
       inject:[ConfigService],
-      useFactory:((configService:ConfigService)=>({
-        type:'postgres',
-        url: configService.get('database.url'),
-        autoLoadEntities:configService.get('database.autoLoadEntities'),
-        synchronize:configService.get('database.synchronize'),
-        ssl:{
-          rejectUnauthorized:false
-        },  
-        extra: {
-          family: 4 // 👈 Force IPv4 connections
-        }
-      }))
+      useFactory:((configService:ConfigService)=>{
+        const dbConfig = configService.get('database');
+        return {
+          type: 'postgres',
+          host: dbConfig.host,
+          port: dbConfig.port,
+          username: dbConfig.username,
+          password: dbConfig.password,
+          database: dbConfig.database,
+          autoLoadEntities: true,
+          synchronize: true,
+          ssl: dbConfig.ssl,
+        };
+      })
     }),
     AuthModule,
     UserModule,
