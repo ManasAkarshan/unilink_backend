@@ -31,8 +31,10 @@ import databaseConfig from './config/database.config';
 
           url:dbConfig.url,
           autoLoadEntities: dbConfig.autoLoadEntities,
-          synchronize: dbConfig.synchronize,
-          ssl: dbConfig.ssl,
+          synchronize: dbConfig.synchronize,  
+          ssl: {
+            rejectUnauthorized:true
+          }
         };
       })
     }),
