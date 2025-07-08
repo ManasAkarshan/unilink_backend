@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { IsNumber } from "class-validator";
 import { Link } from "src/link/entity/link.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -14,19 +15,23 @@ export class User{
   email:string
 
   @Column()
+  @Exclude()
   password:string
 
   // detail field
   @Column()
   username:string
 
-  @Column()
+  @Column({nullable:true})
   bio:string
 
-  @Column()
+  @Column({default:false, nullable:true})
+  isEmailVerified:boolean
+
+  @Column({nullable:true})
   name:string
 
-  @Column()
+  @Column({nullable:true})
   profilePic:string
 
   @OneToMany(()=>Link, (link)=>link.user, {cascade:true})

@@ -8,6 +8,7 @@ import { LinkModule } from './link/link.module';
 import { ClickLogModule } from './click-log/click-log.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from './config/database.config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [

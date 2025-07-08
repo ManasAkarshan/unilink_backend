@@ -34,5 +34,5 @@ export class Link{
   updatedAt:Date
 
   @DeleteDateColumn()
-  deletedAt
+  deletedAt:Date
 }
