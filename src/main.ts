@@ -4,6 +4,7 @@ import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/comm
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import {AddressInfo} from 'net'
 import { AllExceptionFilter } from './common/filters/all-exception.filter';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
 
@@ -20,11 +21,19 @@ async function bootstrap() {
     )
   )
 
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  })
+
   // app.setGlobalPrefix('/api/v1')
 
-  app.useGlobalFilters(new AllExceptionFilter())
+  // app.useGlobalFilters(new AllExceptionFilter())
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
+  app.use(cookieParser())
 
   const config = new DocumentBuilder().setTitle('Unilink app')
     .setDescription('The unilink API description')

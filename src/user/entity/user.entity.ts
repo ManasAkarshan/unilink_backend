@@ -1,4 +1,4 @@
-import { Exclude } from "class-transformer";
+import { Exclude, Expose } from "class-transformer";
 import { IsNumber } from "class-validator";
 import { Link } from "src/link/entity/link.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -11,7 +11,7 @@ export class User{
 
   // Auth fields
 
-  @Column()
+  @Column({unique:true})
   email:string
 
   @Column()
@@ -19,7 +19,7 @@ export class User{
   password:string
 
   // detail field
-  @Column()
+  @Column({unique:true})
   username:string
 
   @Column({nullable:true})
