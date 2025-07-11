@@ -6,10 +6,10 @@ export class CreateUserDto{
   email:string
 
   @IsString()
-  @MinLength(3, {message:"Username should be minimum 8 characters long"})
+  @MinLength(3, {message:"Username should be minimum 3 characters long"})
   username: string
 
   @IsString()
   @MinLength(8, {message:"Password should be minimum 8 characters long"})
-  password:string
+  password: string
 }
